@@ -1,55 +1,39 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-
-<!-- Leaflet CSS -->
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
-
 <style>
-  #map {
-    width: 100%;
-    height: 100vh;
-  }
+    body {
+        background: #111;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+    svg {
+        width: 300px;
+        height: auto;
+        stroke: #fff;
+        fill: none;
+        stroke-width: 2;
+        stroke-dasharray: 1000;
+        stroke-dashoffset: 1000;
+        animation: draw 3s forwards, fadeIn 2s forwards;
+    }
+    @keyframes draw {
+        to { stroke-dashoffset: 0; }
+    }
+    @keyframes fadeIn {
+        0% { opacity: 0; }
+        100% { opacity: 1; }
+    }
 </style>
 </head>
-
 <body>
-
-<div id="map"></div>
-
-<!-- Leaflet JS -->
-<script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
-
-<script>
-// Inicializa o mapa
-const mapa = L.map("map").setView([-15.78, -47.93], 5);
-
-// Camada base
-L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-  maxZoom: 18,
-}).addTo(mapa);
-
-// URL do seu arquivo hospedado no GitHub Pages
-const urlGeojson = "https://danieltognoncbio.github.io/mapa2/map.geojson";
-
-// Carrega o GeoJSON
-fetch(urlGeojson)
-  .then(r => r.json())
-  .then(geo => {
-    const camada = L.geoJSON(geo, {
-      style: {
-        color: "#000000",
-        weight: 2,
-        fillOpacity: 0.3
-      }
-    }).addTo(mapa);
-
-    mapa.fitBounds(camada.getBounds());
-  })
-  .catch(err => console.error("Erro carregando GeoJSON:", err));
-
-</script>
-
+    <!-- Substitua pelo SVG do seu logo -->
+    <svg viewBox="0 0 200 200">
+        <path d="M50,100 C50,50 150,50 150,100 C150,150 50,150 50,100 Z" />
+        <text x="50" y="180" font-size="20" fill="#fff">Cerradinho Bio</text>
+    </svg>
 </body>
 </html>
